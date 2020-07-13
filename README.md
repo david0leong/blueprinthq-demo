@@ -10,6 +10,22 @@ Here is [original requirement](https://github.com/blueprinthq/coding-challenge).
 
 ### How to run locally
 
+Run container
+
+```bash
+docker-compose up -d
+```
+
+Once container is up and running apply migrations (a one-time operation) and create superuser by executing:
+
+```bash
+docker-compose exec api bash
+
+python manage.py migrate
+python manage.py createsuperuser
+exit
+```
+
 ### Description of the problem and solution
 
 ### Technical choices
