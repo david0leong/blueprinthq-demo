@@ -1,12 +1,10 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import Assessment
-from .serializers import AssessmentSerializer, AssessmentContentSerializer
-
-# Create your views here.
+from .serializers import AssessmentSerializer
+from .utils import evaluate_screener, get_next_assessments
 
 
 class ScreenerIndexView(APIView):
@@ -19,18 +17,13 @@ class ScreenerIndexView(APIView):
         Return screener assessment
         """
 
-        screener = get_object_or_404(
-            # Assessment.objects.prefetch_related('sections'),
-            Assessment,
-            disorder='Cross-Cutting'
-        )
+        screener = get_object_or_404(Assessment.objects.screeners())
         serializer = AssessmentSerializer(screener)
-        # serializer = AssessmentContentSerializer(screener)
 
         return Response(serializer.data)
 
 
-class ScreenerAnswerView(APIView):
+class ScreenerEvaluateView(APIView):
     """
     Accepts screener answer
     """
@@ -40,4 +33,19 @@ class ScreenerAnswerView(APIView):
         Accepts screener answer
         """
 
-        return Response(status=status.HTTP_200_OK)
+        screener = get_object_or_404(Assessment.objects.screeners())
+        domain_scores = evaluate_screener(
+            screener,
+            request.data['answers']
+        )
+        next_assessments = get_next_assessments(domain_scores)
+        assessment_names = list(
+            set(
+                map(
+                    lambda assessment: assessment.name,
+                    next_assessments
+                )
+            )
+        )
+
+        return Response({'results': assessment_names})

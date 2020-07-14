@@ -1,11 +1,18 @@
 from django.db import models
 
 
+class AssessmentQuerySet(models.QuerySet):
+    def screeners(self):
+        return self.filter(disorder='Cross-Cutting')
+
+
 class Assessment(models.Model):
     """Assessment"""
 
     class Meta:
         pass
+
+    objects = AssessmentQuerySet.as_manager()
 
     name = models.CharField(
         max_length=30,
