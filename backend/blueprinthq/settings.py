@@ -26,21 +26,22 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 # Application definition
 
-COMMON = [
-    'rest_framework',
-    'corsheaders',
-]
-
-APPS = []
-
 INSTALLED_APPS = [
+    # Django built-in apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] + COMMON + APPS
+
+    # Third-party apps
+    'rest_framework',
+    'corsheaders',
+
+    # Apps
+    'screener.apps.ScreenerConfig'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

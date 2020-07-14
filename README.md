@@ -35,6 +35,8 @@ exit
 As this is a coding challenge, this project is not complete in terms of business features.
 The features that would make it deployable to production are:
 
+- Add test spec
 - Make patient able to signup and login
 - Record the answers from the patients
-- Add admin dashboard (Can be done using django-admin)
+- Add admin dashboard to manage entities (Can be done using django-admin)
+- Add validators for models
