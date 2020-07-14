@@ -20,7 +20,7 @@ class Question(models.Model):
     )
 
     title = models.CharField(
-        max_length=100,
+        max_length=256,
         help_text='Answer title'
     )
 
