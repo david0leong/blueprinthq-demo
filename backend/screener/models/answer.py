@@ -6,7 +6,8 @@ class Answer(models.Model):
     """Answer"""
 
     class Meta:
-        pass
+        ordering = ['section_id', 'value']
+        unique_together = ['section_id', 'value']
 
     section = models.ForeignKey(
         'Section',

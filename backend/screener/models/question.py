@@ -5,7 +5,7 @@ class Question(models.Model):
     """Question"""
 
     class Meta:
-        pass
+        ordering = ['section_id', 'id']
 
     domain = models.ForeignKey(
         'Domain',
