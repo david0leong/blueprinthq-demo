@@ -4,6 +4,9 @@ from django.db import models
 class Assessment(models.Model):
     """Assessment"""
 
+    class Meta:
+        pass
+
     name = models.CharField(
         max_length=30,
         help_text='Assessment name'
@@ -29,9 +32,6 @@ class Assessment(models.Model):
         editable=False,
         help_text='When the assessment is created'
     )
-
-    class Meta:
-        pass
 
     def __str__(self):
         return self.full_name
