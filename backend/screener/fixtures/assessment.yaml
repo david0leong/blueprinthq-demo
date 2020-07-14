@@ -1,0 +1,35 @@
+- model: screener.Assessment
+  pk: 1
+  fields:
+    name: BPDS
+    full_name: Blueprint Diagnostic Screener
+    display_name: BDS
+    disorder: Cross-Cutting
+    created_at: 2020-07-14 02:00:00+00
+
+- model: screener.Assessment
+  pk: 2
+  fields:
+    name: PHQ-9
+    full_name: PHQ-9
+    display_name: PHQ-9
+    disorder: PHQ-9
+    created_at: 2020-07-14 02:00:00+00
+
+- model: screener.Assessment
+  pk: 3
+  fields:
+    name: ASRM
+    full_name: ASRM
+    display_name: ASRM
+    disorder: ASRM
+    created_at: 2020-07-14 02:00:00+00
+
+- model: screener.Assessment
+  pk: 4
+  fields:
+    name: ASSIST
+    full_name: ASSIST
+    display_name: ASSIST
+    disorder: ASSIST
+    created_at: 2020-07-14 02:00:00+00

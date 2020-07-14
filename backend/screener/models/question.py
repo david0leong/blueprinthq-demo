@@ -7,14 +7,14 @@ class Question(models.Model):
     class Meta:
         ordering = ['section_id', 'id']
 
-    domain = models.ForeignKey(
-        'Domain',
+    section = models.ForeignKey(
+        'Section',
         related_name='questions',
         on_delete=models.CASCADE
     )
 
-    section = models.ForeignKey(
-        'Section',
+    domain = models.ForeignKey(
+        'Domain',
         related_name='questions',
         on_delete=models.CASCADE
     )

@@ -1,0 +1,34 @@
+- model: screener.Answer
+  pk: 1
+  fields:
+    section_id: 1
+    value: 0
+    title: Not at all
+
+- model: screener.Answer
+  pk: 2
+  fields:
+    section_id: 1
+    value: 1
+    title: Rare, less than a day or two
+
+- model: screener.Answer
+  pk: 3
+  fields:
+    section_id: 1
+    value: 2
+    title: Several days
+
+- model: screener.Answer
+  pk: 4
+  fields:
+    section_id: 1
+    value: 3
+    title: More than half the days
+
+- model: screener.Answer
+  pk: 5
+  fields:
+    section_id: 1
+    value: 4
+    title: Nearly every day

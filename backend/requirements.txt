@@ -3,3 +3,4 @@ django-cors-headers==3.4.0
 django-environ==0.4.5
 djangorestframework==3.11.0
 psycopg2==2.8.5
+PyYAML==5.3.1

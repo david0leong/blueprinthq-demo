@@ -1,0 +1,27 @@
+- model: screener.Domain
+  pk: 1
+  fields:
+    name: Depression
+    threshold: 2
+    next_assessment_id: 2
+
+- model: screener.Domain
+  pk: 2
+  fields:
+    name: Mania
+    threshold: 2
+    next_assessment_id: 3
+
+- model: screener.Domain
+  pk: 3
+  fields:
+    name: Anxiety
+    threshold: 2
+    next_assessment_id: 2
+
+- model: screener.Domain
+  pk: 4
+  fields:
+    name: Substance Use
+    threshold: 1
+    next_assessment_id: 4

@@ -1,0 +1,55 @@
+- model: screener.Question
+  pk: 1
+  fields:
+    section_id: 1
+    domain_id: 1
+    title: Little interest or pleasure in doing things?
+
+- model: screener.Question
+  pk: 2
+  fields:
+    section_id: 1
+    domain_id: 1
+    title: Feeling down, depressed, or hopeless?
+
+- model: screener.Question
+  pk: 3
+  fields:
+    section_id: 1
+    domain_id: 2
+    title: Sleeping less than usual, but still have a lot of energy?
+
+- model: screener.Question
+  pk: 4
+  fields:
+    section_id: 1
+    domain_id: 2
+    title: Starting lots more projects than usual or doing more risky things than usual?
+
+- model: screener.Question
+  pk: 5
+  fields:
+    section_id: 1
+    domain_id: 3
+    title: Feeling nervous, anxious, frightened, worried, or on edge?
+
+- model: screener.Question
+  pk: 6
+  fields:
+    section_id: 1
+    domain_id: 3
+    title: Feeling panic or being frightened?
+
+- model: screener.Question
+  pk: 7
+  fields:
+    section_id: 1
+    domain_id: 3
+    title: Avoiding situations that make you feel anxious?
+
+- model: screener.Question
+  pk: 8
+  fields:
+    section_id: 1
+    domain_id: 4
+    title: Drinking at least 4 drinks of any kind of alcohol in a single day?
