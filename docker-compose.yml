@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: blueprinthq
+      POSTGRES_PASSWORD: blueprinthq
+      POSTGRES_DB: blueprinthq
+    ports:
+      - "5433:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+
   api:
     build:
       context: ./backend
@@ -13,18 +25,6 @@ services:
       - ./backend:/code
     depends_on:
       - db
-
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: blueprinthq
-      POSTGRES_PASSWORD: blueprinthq
-      POSTGRES_DB: blueprinthq
-    ports:
-      - "5433:5432"
-    volumes:
-      - data:/var/lib/postgresql/data
 
 volumes:
   data: {}
