@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import get from 'lodash/get'
 import flatten from 'lodash/flatten'
 
+import AssessmentProgress from './AssessmentProgress'
 import Alert from './Alert'
 import Question from './Question'
 import NextAssessments from './NextAssessments'
@@ -24,10 +25,6 @@ function Assessment({ assessment, nextAssessments, onSubmit }) {
   )
   const [answers, setAnswers] = useState([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const isLastQuestion = useMemo(
-    () => currentQuestionIndex === questions.length - 1,
-    [questions, currentQuestionIndex]
-  )
   const currentQuestion = useMemo(() => questions[currentQuestionIndex], [
     questions,
     currentQuestionIndex,
@@ -42,26 +39,19 @@ function Assessment({ assessment, nextAssessments, onSubmit }) {
       return <Alert severity="warning">There are no questions!</Alert>
     }
 
-    return (
-      currentQuestion && (
-        <Question
-          question={currentQuestion}
-          isLast={isLastQuestion}
-          onSubmit={handleAnswer}
-        />
-      )
-    )
+    if (currentQuestion) {
+      return <Question question={currentQuestion} onSubmit={handleAnswer} />
+    }
   }
 
   const handleAnswer = answer => {
     const newAnswers = [...answers, answer]
 
     setAnswers(newAnswers)
+    setCurrentQuestionIndex(currentQuestionIndex + 1)
 
-    if (isLastQuestion) {
+    if (currentQuestionIndex === questions.length - 1) {
       onSubmit(newAnswers)
-    } else {
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
     }
   }
 
@@ -70,6 +60,11 @@ function Assessment({ assessment, nextAssessments, onSubmit }) {
       <Typography variant="h3" color="primary" align="center" gutterBottom>
         {assessment.content.display_name}({assessment.full_name})
       </Typography>
+
+      <AssessmentProgress
+        total={questions.length}
+        answered={currentQuestionIndex}
+      />
 
       {renderContent()}
     </>
