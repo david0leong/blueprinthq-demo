@@ -16,7 +16,6 @@ services:
   api:
     build:
       context: ./backend
-      args: {}
     restart: always
     command: python manage.py runserver 0.0.0.0:8000
     ports:
@@ -25,6 +24,18 @@ services:
       - ./backend:/code
     depends_on:
       - db
+  
+  app:
+    build:
+      context: ./frontend
+    command: yarn start
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/code
+    depends_on:
+      - api
 
 volumes:
   data: {}

@@ -40,6 +40,8 @@ Load fixtures
 docker-compose exec api python manage.py loaddata --app screener assessment.yaml domain.yaml section.yaml question.yaml answer.yaml
 ```
 
+Now you can manage preloaded data in [admin dashboard](http://localhost:8000/admin/)
+
 ### Description of the problem and solution
 
 ### Technical choices
