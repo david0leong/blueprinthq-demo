@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-import { fetchScreener } from '../utils/api'
+import {
+  fetchScreener as fetchScreenerApi,
+  evalulateScreener as evalulateScreenerApi,
+} from '../utils/api'
 import Loading from '../components/Loading'
 import Alert from '../components/Alert'
 import Assessment from '../components/Assessment'
@@ -9,28 +12,45 @@ function Screener() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [screener, setScreener] = useState(null)
+  const [nextAssessments, setNextAssessments] = useState(null)
 
-  const handleSubmit = answers => {
-    console.log('Submit', answers)
+  const handleSubmit = async answers => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const { data } = await evalulateScreenerApi(
+        answers.map(({ questionId, value }) => ({
+          question_id: questionId,
+          value,
+        }))
+      )
+
+      setNextAssessments(data.results)
+    } catch (error) {
+      setError(`Error in evaluating screener: ${error.toString()}`)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchScreener = async () => {
       try {
         setLoading(true)
         setError(null)
 
-        const { data } = await fetchScreener()
+        const { data } = await fetchScreenerApi()
 
         setScreener(data)
-      } catch (err) {
-        setError(`Error in loading screener: ${err.toString()}`)
+      } catch (error) {
+        setError(`Error in loading screener: ${error.toString()}`)
       } finally {
         setLoading(false)
       }
     }
 
-    loadData()
+    fetchScreener()
   }, [])
 
   return (
@@ -39,7 +59,13 @@ function Screener() {
 
       {error && <Alert severity="error">{error}</Alert>}
 
-      {screener && <Assessment assessment={screener} onSubmit={handleSubmit} />}
+      {screener && (
+        <Assessment
+          assessment={screener}
+          nextAssessments={nextAssessments}
+          onSubmit={handleSubmit}
+        />
+      )}
     </>
   )
 }

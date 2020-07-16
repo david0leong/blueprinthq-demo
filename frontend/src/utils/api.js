@@ -10,5 +10,5 @@ const axiosInstance = axios.create({
 
 export const fetchScreener = () => axiosInstance.get('screener/')
 
-export const evalulateScreener = payload =>
-  axiosInstance.post('/screener/evaluate', payload)
+export const evalulateScreener = answers =>
+  axiosInstance.post('screener/evaluate/', { answers })
