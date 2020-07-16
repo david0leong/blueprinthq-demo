@@ -5,6 +5,7 @@ from .views import ScreenerIndexView, ScreenerEvaluateView
 app_name = 'screener'
 
 urlpatterns = [
-    path('', ScreenerIndexView.as_view(), name='index'),
-    path('evaluate/', ScreenerEvaluateView.as_view(), name='evaluate')
+    path('screener/', ScreenerIndexView.as_view(), name='screener-index'),
+    path('screener/evaluate/', ScreenerEvaluateView.as_view(),
+         name='screener-evaluate')
 ]
